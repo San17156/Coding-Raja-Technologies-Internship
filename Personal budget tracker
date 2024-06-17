@@ -1,0 +1,56 @@
+class BudgetTracker:
+    def __init__(self):
+        self.income = 0
+        self.expenses = {}
+
+    def set_income(self, income):
+        self.income = income
+
+    def add_expense(self, category, amount):
+        if category in self.expenses:
+            self.expenses[category] += amount
+        else:
+            self.expenses[category] = amount
+
+    def view_expenses(self):
+        for category, amount in self.expenses.items():
+            print(f"{category}: ${amount:.2f}")
+
+    def calculate_balance(self):
+        total_expenses = sum(self.expenses.values())
+        balance = self.income - total_expenses
+        return balance
+
+
+def main():
+    budget = BudgetTracker()
+
+    while True:
+        print("\n1. Set income")
+        print("2. Add expense")
+        print("3. View expenses")
+        print("4. Calculate balance")
+        print("5. Quit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            income = float(input("Enter your income: $"))
+            budget.set_income(income)
+        elif choice == "2":
+            category = input("Enter expense category: ")
+            amount = float(input("Enter expense amount: $"))
+            budget.add_expense(category, amount)
+        elif choice == "3":
+            budget.view_expenses()
+        elif choice == "4":
+            balance = budget.calculate_balance()
+            print(f"Your current balance is: ${balance:.2f}")
+        elif choice == "5":
+            break
+        else:
+            print("Invalid choice. Please choose a valid option.")
+
+
+if __name__ == "__main__":
+    main()
