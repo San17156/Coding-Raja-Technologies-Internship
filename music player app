@@ -1,0 +1,181 @@
+HTML STRUCTURE:
+
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Playlists</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="music-library">
+            <h2>Music Library</h2>
+            <ul id="track-list">
+                <!-- Track list will be generated dynamically using JavaScript -->
+            </ul>
+        </section>
+        <section class="playlist-manager">
+            <h2>Playlist Manager</h2>
+            <input type="text" id="playlist-name" placeholder="Enter playlist name">
+            <button id="create-playlist">Create Playlist</button>
+            <ul id="playlist-list">
+                <!-- Playlist list will be generated dynamically using JavaScript -->
+            </ul>
+        </section>
+        <section class="audio-player">
+            <h2>Audio Player</h2>
+            <audio id="audio" src="" controls></audio>
+            <div class="controls">
+                <button id="play-pause">Play/Pause</button>
+                <button id="next">Next</button>
+                <button id="prev">Previous</button>
+                <button id="shuffle">Shuffle</button>
+                <button id="repeat">Repeat</button>
+                <input type="range" id="volume" min="0" max="100" value="50">
+            </div>
+            <div class="progress-bar">
+                <div id="progress"></div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+
+CSS (using boot strap ):
+
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.music-library {
+    background-color: #f7f7f7;
+    padding: 2em;
+}
+
+#track-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#track-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#track-list li:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.playlist-manager {
+    background-color: #fff;
+    padding: 2em;
+}
+
+#audio {
+    width: 100%;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.controls button {
+    margin-right: 10px;
+}
+
+.progress-bar {
+    margin-top: 20px;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+#progress {
+    width: 0;
+    height: 10px;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+    .music-library {
+        padding: 1em;
+    }
+    #track-list li {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-library {
+        padding: 0.5em;
+    }
+    #track-list li {
+        padding: 2px;
+    }
+}
+
+JAVA SCRIPT :
+
+// script.js
+
+const audio = document.getElementById('audio');
+const trackList = document.getElementById('track-list');
+const playlistList = document.getElementById('playlist-list');
+const playlistNameInput = document.getElementById('playlist-name');
+const createPlaylistButton = document.getElementById('create-playlist');
+const playPauseButton = document.getElementById('play-pause');
+const nextButton = document.getElementById('next');
+const prevButton = document.getElementById('prev');
+const shuffleButton = document.getElementById('shuffle');
+const repeatButton = document.getElementById('repeat');
+const volumeInput = document.getElementById('volume');
+const progressBar = document.getElementById('progress');
+
+let currentTrack = null;
